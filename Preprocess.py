@@ -2,13 +2,13 @@ import os
 import sys
 import pickle
 import numpy as np
-from Configure import root_path
+from Configure import file_path
 from Configure import data_path
 from sklearn import preprocessing
 
 def Norm(fold, X, method):
     normalizer_name = 'fold_' + str(fold) + '_' + method + '.p'
-    normalizer_path = os.path.join(root_path, normalizer_name)
+    normalizer_path = os.path.join(file_path, normalizer_name)
     if os.path.exists(normalizer_path):
         with open(normalizer_path,"rb") as infile:
         	normalizer = pickle.load(infile)
@@ -36,7 +36,7 @@ def creatNormalizer(fold, method):
         print("Start Fit with method: {m}".format(m=str(method)))
         normalizer.fit(phi)
         normalizer_name = 'fold_' + str(fold) + '_' + method + '.p'
-        normalizer_path = os.path.join(root_path, normalizer_name)
+        normalizer_path = os.path.join(file_path, normalizer_name)
         with open(normalizer_path, 'wb') as outfile:
             pickle.dump(normalizer, outfile)
         print("Normalizer Saved")
