@@ -10,8 +10,8 @@ if __name__ == '__main__':
 
     res = collections.defaultdict(list)
     train_index_path = './train_index.json'
-    naive_audio_path = '/Users/shuizhuyu/Desktop/audio_naive'
-    save_file_path = '/Users/shuizhuyu/Desktop/SummerResearch/Data'
+    naive_audio_path = '/home/zsun/work/summer/data/audio_naive'
+    save_file_path = '/home/zsun/work/summer/data'
     with open(train_index_path, 'r') as trfile:
         train = json.load(trfile)
         for key in train.keys():
