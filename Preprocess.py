@@ -20,8 +20,9 @@ def Norm(fold, X, method):
         Norm(fold, X, method)
 
 def creatNormalizer(fold, method):
-    print("Create Normalizer")
-    data_name = 'fold_' + str(fold) + '.npy'
+    print("Create Normalizer for fold: {f} with method: {m}".format(f=str(fold).
+            m = str(method)))
+    data_name = 'fold' + str(fold) + '.npy'
     data_path = os.path.join(vocabulary_path, data_name)
     if os.path.exists(data_path):
         phi = np.load(data_path)
@@ -43,7 +44,6 @@ def creatNormalizer(fold, method):
 
 if __name__ == '__main__':
     args = sys.argv[1].split(',')
-    print(args)
     fold = args[0]
     method = args[1]
     creatNormalizer(fold, method)
