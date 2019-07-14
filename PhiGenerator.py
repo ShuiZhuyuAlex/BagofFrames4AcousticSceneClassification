@@ -10,7 +10,7 @@ from sklearn.cluster import MiniBatchKMeans
 
 def kMeansTrain(fold, method, clusters):
     print("Create KMeans Model")
-    data_name = 'fold_' + str(fold) + '.npy'
+    data_name = 'fold' + str(fold) + '.npy'
     x_path = os.path.join(vocabulary_path, data_name)
     if os.path.exists(x_path):
         temp = np.load(x_path)
