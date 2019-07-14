@@ -9,7 +9,9 @@ from sklearn.cluster import MiniBatchKMeans
 
 
 def kMeansTrain(fold, method, clusters):
-    print("Create KMeans Model")
+    print("Create KMeans Model for fold: {f}".format(f = fold))
+    print("Number of Clusters: {c}".format(c = str(clusters)))
+    print("Normalization Method: {m}".format(m = method))
     data_name = 'fold' + str(fold) + '.npy'
     x_path = os.path.join(vocabulary_path, data_name)
     if os.path.exists(x_path):
@@ -24,14 +26,15 @@ def kMeansTrain(fold, method, clusters):
         cluster_path = os.path.join(file_path, cluster_name)
         with open(cluster_path, "wb") as outfile:
         	pickle.dump(kmeans,outfile)
-        print("KMeans generated ans saved")
+        print("KMeans generated and saved")
     else:
         print("No Feature File")
 
 
 def kMeansPhiGenerator(fold, X, method, clusters):
-    cluster_name = 'fold_' + str(fold) +  '_' + method + '_' + str(clusters) + '.p'
-    cluster_path = os.path.join(file, cluster_name)
+    cluster_name = ('fold_' + str(fold) +  '_' + method +
+                    '_' + str(clusters) + '.p')
+    cluster_path = os.path.join(file_path, cluster_name)
     if os.path.exists(cluster_path):
         with open(cluster_path, "rb") as infile:
         	kmeans = pickle.load(infile)
@@ -48,8 +51,14 @@ def kMeansPhiGenerator(fold, X, method, clusters):
         kMeansPhiGenerator(fold, X, method, clusters)
 
 if __name__ == '__main__':
-    args = sys.argv[1].split(',')
-    fold = args[0]
-    method = args[1]
-    clusters = int(args[2])
-    kMeansTrain(fold, method, clusters)
+    folds = ['0', '1', '2', '3', '4']
+    clusters = [50, 60, 70, 80, 90, 100]
+    method = ['minmaxtest', 'scale', 'norm']
+    # args = sys.argv[1].split(',')
+    # fold = args[0]
+    # method = args[1]
+    # clusters = int(args[2])
+    for f in folds:
+        for c in clusters:
+            for m in method:
+                kMeansTrain(f, m, c)
