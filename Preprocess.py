@@ -45,7 +45,8 @@ def creatNormalizer(fold, method):
 
 
 if __name__ == '__main__':
-    args = sys.argv[1].split(',')
-    fold = args[0]
-    method = args[1]
-    creatNormalizer(fold, method)
+    folds = ['0', '1', '2', '3', '4']
+    method = ['minmaxtest', 'scale', 'norm']
+    for f in folds:
+        for m in method:
+            creatNormalizer(f, m)
