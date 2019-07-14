@@ -5,9 +5,6 @@ import collections
 import numpy as np
 
 if __name__ == '__main__':
-    args = sys.argv[1]
-    args = list(map(int, args.split(',')))
-
     res = collections.defaultdict(list)
     train_index_path = './train_index.json'
     naive_audio_path = '/home/zsun/work/summer/data/audio_naive'
