@@ -2,7 +2,7 @@ import os
 import sys
 import pickle
 import numpy as np
-from Configure import file
+from Configure import file_path
 from Preprocess import Norm
 from sklearn.cluster import MiniBatchKMeans
 
@@ -10,9 +10,9 @@ from sklearn.cluster import MiniBatchKMeans
 def kMeansTrain(fold, method, clusters):
     print("Create KMeans Model")
     data_name = 'fold_' + str(fold) + '.npy'
-    data_path = os.path.join(vocabulary_path, data_name)
-    if os.path.exists(data_path):
-        temp = np.load(data_path)
+    x_path = os.path.join(vocabulary_path, data_name)
+    if os.path.exists(x_path):
+        temp = np.load(x_path)
         train_data = Norm(fold, temp, method)
         kmeans = MiniBatchKMeans(n_clusters = clusters, max_iter = 300,
                                  n_init = 30, batch_size = 200,
@@ -20,8 +20,8 @@ def kMeansTrain(fold, method, clusters):
                                  reassignment_ratio = 0.007).fit(train_data)
         model_name = ('fold_' + str(fold) +  '_' +
                       method + '_' + str(clusters) + '.p')
-        model_path = os.path.join(file, model_name)
-        with open(model_path, "wb") as outfile:
+        cluster_path = os.path.join(file_path, model_name)
+        with open(cluster_path, "wb") as outfile:
         	pickle.dump(kmeans,outfile)
         print("KMeans generated ans saved")
     else:
