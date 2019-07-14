@@ -2,8 +2,9 @@ import os
 import sys
 import pickle
 import numpy as np
-from Configure import file_path
 from Preprocess import Norm
+from Configure import file_path
+from Configure import vocabulary_path
 from sklearn.cluster import MiniBatchKMeans
 
 
@@ -18,9 +19,9 @@ def kMeansTrain(fold, method, clusters):
                                  n_init = 30, batch_size = 200,
                                  init = 'k-means++',
                                  reassignment_ratio = 0.007).fit(train_data)
-        model_name = ('fold_' + str(fold) +  '_' +
+        cluster_name = ('fold_' + str(fold) +  '_' +
                       method + '_' + str(clusters) + '.p')
-        cluster_path = os.path.join(file_path, model_name)
+        cluster_path = os.path.join(file_path, cluster_name)
         with open(cluster_path, "wb") as outfile:
         	pickle.dump(kmeans,outfile)
         print("KMeans generated ans saved")
@@ -29,10 +30,10 @@ def kMeansTrain(fold, method, clusters):
 
 
 def kMeansPhiGenerator(fold, X, method, clusters):
-    model_name = 'fold_' + str(fold) +  '_' + method + '_' + str(clusters) + '.p'
-    model_path = os.path.join(file, model_name)
-    if os.path.exists(model_path):
-        with open(model_path, "rb") as infile:
+    cluster_name = 'fold_' + str(fold) +  '_' + method + '_' + str(clusters) + '.p'
+    cluster_path = os.path.join(file, cluster_name)
+    if os.path.exists(cluster_path):
+        with open(cluster_path, "rb") as infile:
         	kmeans = pickle.load(infile)
         no_of_centers = kmeans.cluster_centers_.shape[0]
         X = Norm(fold, X, method)
