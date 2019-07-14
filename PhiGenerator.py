@@ -51,5 +51,5 @@ if __name__ == '__main__':
     args = sys.argv[1].split(',')
     fold = args[0]
     method = args[1]
-    clusters = args[2]
+    clusters = int(args[2])
     kMeansTrain(fold, method, clusters)
