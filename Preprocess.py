@@ -3,7 +3,7 @@ import sys
 import pickle
 import numpy as np
 from Configure import file_path
-from Configure import data_path
+from Configure import vocabulary_path
 from sklearn import preprocessing
 
 def Norm(fold, X, method):
@@ -23,9 +23,9 @@ def creatNormalizer(fold, method):
     print("Create Normalizer for fold: {f} with method: {m}".format(f=str(fold),
             m = str(method)))
     data_name = 'fold' + str(fold) + '.npy'
-    vocabulary_path = os.path.join(data_path, data_name)
-    if os.path.exists(vocabulary_path):
-        phi = np.load(vocabulary_path)
+    data_path = os.path.join(vocabulary_path, data_name)
+    if os.path.exists(data_path):
+        phi = np.load(data_path)
         print("Successfully Load Data for fold: {f}".format(f=str(fold)))
         if method == 'minmaxtest':
             normalizer = preprocessing.MinMaxScaler()
