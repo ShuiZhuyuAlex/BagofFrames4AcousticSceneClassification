@@ -21,7 +21,7 @@ def dataPrepare(index, fold, method, clusters):
         df = pd.read_csv(lpath, header=0, index_col=0)
         for ts in df.index:
             y = np.array(list(map(float, df.loc[ts])))
-            sname = ts + '.sound.mfcc'
+            sname = str(ts) + '.sound.mfcc'
             dpath = os.path.join(temppath, sanme)
             temp = list()
             with open(dpath, 'r') as sf:
