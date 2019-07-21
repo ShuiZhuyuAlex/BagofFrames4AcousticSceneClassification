@@ -8,7 +8,6 @@ from Configure import data_path
 from Configure import file_path
 from Configure import model_path
 from Configure import label_path
-from PhiGenerator import kMeansPhiGenerator
 
 def model(X, Y, cla):
     if cla == 'SVM':
@@ -20,4 +19,3 @@ def model(X, Y, cla):
 
 
 if __name__ == '__main__':
-    

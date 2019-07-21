@@ -3,6 +3,7 @@ import sys
 import json
 import pickle
 import numpy as np
+import pandas as pd
 from Preprocess import Norm
 from Configure import data_path
 from Configure import file_path
@@ -58,7 +59,8 @@ def kMeansPhiGenerator(fold, X, method, clusters):
 def dataFactory(index, X, method, clusters):
     X = list()
     Y = list()
-    for user in index[0]:
+    for user in index[:1]:
+        print(user)
         filename = user + '.features_labels.csv'
         lpath = os.path.join(label_path, filename)
         temppath= os.path.join(data_path, user)
@@ -90,7 +92,7 @@ if __name__ == '__main__':
     with open('train_index.json', 'r') as index_file:
         all = json.load(index_file)
     index = all['0']
-    x, y = dataPrepare(index, '0', 'scale', 70)
+    x, y = dataFactory(index, '0', 'scale', 70)
     print(x.shape)
     print(y.shape)
     # folds = ['0', '1', '2', '3', '4']
