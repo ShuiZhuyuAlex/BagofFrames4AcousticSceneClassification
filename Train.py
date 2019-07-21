@@ -22,18 +22,22 @@ def dataPrepare(index, fold, method, clusters):
         for ts in df.index:
             y = np.array(list(map(float, df.loc[ts])))
             sname = str(ts) + '.sound.mfcc'
-            dpath = os.path.join(temppath, sanme)
-            temp = list()
-            with open(dpath, 'r') as sf:
-                for frame in sf.readlines():
-                    frame = frame.strip(',\n')
-                    frame = list(map(float, frame.split(',')))
-                    frame = np.array(frame)
-                    temp.append(frame)
-            raw_data = np.array(temp)
-            x = kMeansPhiGenerator(fold, raw_data, method, clusters)
-            Y.append(y)
-            X.append(x)
+            dpath = os.path.join(temppath, sname)
+            if os.path.exists(dpath):
+                temp = list()
+                with open(dpath, 'r') as sf:
+                    for frame in sf.readlines():
+                        frame = frame.strip(',\n')
+                        frame = list(map(float, frame.split(',')))
+                        frame = np.array(frame)
+                        temp.append(frame)
+                raw_data = np.array(temp)
+                x = kMeansPhiGenerator(fold, raw_data, method, clusters)
+                Y.append(y)
+                X.append(x)
+            else:
+                print("Data Missing For: {file}".format(file = dpath))
+                continue
     Y = np.array(Y)
     X = np.array(X)
     return X, Y
