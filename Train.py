@@ -20,7 +20,7 @@ def dataPrepare(index, fold, method, clusters):
         temppath= os.path.join(data_path, user)
         df = pd.read_csv(lpath, header=0, index_col=0)
         for ts in df.index:
-            y = np.array(list(map(float, ds.loc[ts])))
+            y = np.array(list(map(float, df.loc[ts])))
             sname = ts + '.sound.mfcc'
             dpath = os.path.join(temppath, sanme)
             temp = list()
