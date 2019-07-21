@@ -56,7 +56,7 @@ def kMeansPhiGenerator(fold, X, method, clusters):
 
     return phi
 
-def dataFactory(index, X, method, clusters):
+def dataFactory(index, fold, method, clusters):
     X = list()
     Y = list()
     for user in index[:1]:
