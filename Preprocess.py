@@ -13,11 +13,11 @@ def Norm(fold, X, method):
         with open(normalizer_path,"rb") as infile:
         	normalizer = pickle.load(infile)
         phi = normalizer.transform(X)
-        return phi
     else:
         print("Normalizer Missing!!!")
         creatNormalizer(fold, method)
-        Norm(fold, X, method)
+        phi = Norm(fold, X, method)
+    return phi
 
 def creatNormalizer(fold, method):
     print("Create Normalizer for fold: {f} with method: {m}".format(f=str(fold),

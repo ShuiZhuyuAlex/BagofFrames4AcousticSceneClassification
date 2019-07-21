@@ -48,7 +48,9 @@ def kMeansPhiGenerator(fold, X, method, clusters):
                 phi[j] = counts[np.where(unique == j)][0]
     else:
         kMeansTrain(fold, method, clusters)
-        kMeansPhiGenerator(fold, X, method, clusters)
+        phi = kMeansPhiGenerator(fold, X, method, clusters)
+
+    return phi
 
 if __name__ == '__main__':
     folds = ['0', '1', '2', '3', '4']
