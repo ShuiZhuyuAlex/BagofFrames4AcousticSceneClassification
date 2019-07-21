@@ -57,10 +57,11 @@ def kMeansPhiGenerator(fold, X, method, clusters):
     return phi
 
 def dataFactory(index, fold, method, clusters):
+    print("Generate Phi for fold: {f}".format(f=fold))
     X = list()
     Y = list()
     for user in index[:1]:
-        print(user)
+        print("User: {u}".format(u = user))
         filename = user + '.features_labels.csv'
         lpath = os.path.join(label_path, filename)
         temppath= os.path.join(data_path, user)
@@ -71,6 +72,7 @@ def dataFactory(index, fold, method, clusters):
             dpath = os.path.join(temppath, sname)
             if os.path.exists(dpath):
                 temp = list()
+                print("------------->Time Stamp: {ts}".format(ts = sname))
                 with open(dpath, 'r') as sf:
                     for frame in sf.readlines():
                         frame = frame.strip(',\n')
@@ -82,7 +84,7 @@ def dataFactory(index, fold, method, clusters):
                 Y.append(y)
                 X.append(x)
             else:
-                print("Data Missing For: {file}".format(file = dpath))
+                print("------------->Data Missing For: {ts}".format(ts = sname))
                 continue
     Y = np.array(Y)
     X = np.array(X)
