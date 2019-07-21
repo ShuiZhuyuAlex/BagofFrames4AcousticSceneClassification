@@ -15,7 +15,7 @@ def dataPrepare(index, fold, method, clusters):
     X = list()
     Y = list()
     for user in index:
-        filename = user + '.feature_labels.csv'
+        filename = user + '.features_labels.csv'
         lpath = os.path.join(label_path, filename)
         temppath= os.path.join(data_path, user)
         df = pd.read_csv(lpath, header=0, index_col=0)
