@@ -30,7 +30,7 @@ def dataPrepare(index, fold, method, clusters):
                     frame = list(map(float, frame.split(',')))
                     frame = np.array(frame)
                     temp.append(frame)
-            raw_data = np.array(temp
+            raw_data = np.array(temp)
             x = kMeansPhiGenerator(fold, raw_data, method, clusters)
             Y.append(y)
             X.append(x)
@@ -48,12 +48,9 @@ def model(X, Y, cla):
 
 
 if __name__ == '__main__':
-    args = sys.argv[1]
-    fold = str(args[0])
-    method = str(args[1])
-    clusters = str(args[2])
-    cla = str(args[3])
-    tr_index = json.load('train_index.json')
-    index = tr_index[fold]
-    X, Y = dataPrepare(fold, index, method, clusters)
-    model(X, Y, cla)
+    with open('train_index.json', 'r') as index_file:
+        all = json.load(index_file)
+    index = all['0']
+    x, y = dataPrepare(index, '0', 'scale', 70)
+    print(x.shape)
+    print(y.shape)

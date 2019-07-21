@@ -1,9 +1,15 @@
+#@author: Zhaoyu
+"""
+A preliminary label_filter, cause in original dataset, a lot of labels are
+missing. In further research, this filter is not recommended.
+"""
+
 import pandas as pd
 import numpy as np
 import os
 
-filepath = '/Users/shuizhuyu/Desktop/Labels'
-outpath = '/Users/shuizhuyu/Desktop/SummerResearch/Labels'
+filepath = ''
+outpath = ''
 
 label_dict = dict()
 for file in os.listdir(filepath):
