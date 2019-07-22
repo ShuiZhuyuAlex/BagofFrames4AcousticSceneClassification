@@ -88,6 +88,12 @@ def dataFactory(index, fold, method, clusters):
                 continue
     Y = np.array(Y)
     X = np.array(X)
+    x_name = "fold{f}_method{m}_clusters{c}_data.npy".format(f=fold, m=method, c=clusters)
+    y_name = "fold{f}_method{m}_clusters{c}_label.npy".format(f=fold, m=method, c=clusters)
+    x_path = os.path.join(data_path, x_name)
+    y_path = os.path.join(data_path, y_name)
+    np.save(x_path, X)
+    np.save(y_path, Y)
     return X, Y
 
 if __name__ == '__main__':
