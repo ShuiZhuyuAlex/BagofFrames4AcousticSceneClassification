@@ -60,7 +60,7 @@ def dataFactory(index, fold, method, clusters):
     print("Generate Phi for fold: {f}".format(f=fold))
     X = list()
     Y = list()
-    for user in index[:1]:
+    for user in index:
         print("User: {u}".format(u = user))
         filename = user + '.features_labels.csv'
         lpath = os.path.join(label_path, filename)
